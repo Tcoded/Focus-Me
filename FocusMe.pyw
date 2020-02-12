@@ -1,8 +1,7 @@
 import time
 from datetime import datetime as dtm
 
-# hosts = r"C:\Windows\System32\drivers\etc"
-hosts = "hosts_temp"
+hosts = r"C:\Windows\System32\drivers\etc"
 redirect = "127.0.0.1"
 blockList = ["www.facebook.com", "www.youtube.com", "www.twitter.com"]
 
@@ -10,7 +9,6 @@ while True:
     if  ( dtm(dtm.now().year, dtm.now().month, dtm.now().day, 9)
         < dtm.now()
         < dtm(dtm.now().year, dtm.now().month, dtm.now().day, 17)):
-        print("Get to work!")
         with open(hosts, 'r+') as file:
             hostsContent = file.read()
             for site in blockList:
@@ -26,5 +24,4 @@ while True:
                 if not any(site in line for site in blockList):
                     file.write(line)
             file.truncate()
-        print("Get off work!")
     time.sleep(10)
