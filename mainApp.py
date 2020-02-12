@@ -19,5 +19,12 @@ while True:
                 else:
                     file.write("#" + " " + redirect + " " + site + '\n')
     else:
+        with open(hosts, 'r+') as file:
+            hostsContent = file.readlines()
+            file.seek(0)
+            for line in hostsContent:
+                if not any(site in line for site in blockList):
+                    file.write(line)
+            file.truncate()
         print("Get off work!")
     time.sleep(10)
